@@ -17,14 +17,15 @@ public class Strok {
                 case "/" -> operation = "/";
             }
         }
-        String[] array = str.split(" ");
+        String[] array = str.split(" - ");
         String element1 = array[0].replaceAll("\"", "");
         if (operation == null) {
             throw new IllegalArgumentException("ввод пользователем выражения, не соответствующего одной из вышеописанных арифметических операций");
         }
         if (element1.length()> 10 ){
             throw new InputMismatchException("Введенно более 10 символов в строку 1");}
-        String element2 = array[2].replaceAll("\"", "");
+        String element2 = array[1].replaceAll("\"", "");
+        System.out.println(str.split("\""));
         if (element2.length()> 10 ){
             throw new InputMismatchException("Введенно более 10 символов в строку 2");}
         switch (operation) {
@@ -51,15 +52,27 @@ public class Strok {
                 break;
 
             case "-":
-                resultat = element1.replaceAll(" ", "");
-                System.out.println(resultat);
+              /* boolean cb = element1.contains(element2);
+                if (cb) {
+                    int resA = element1.length() - element2.length();
+                    resultat = element1.substring(0, resA);
+                } else {
+                    resultat = element1;
+                }
+                if (cb & element1.length() == element2.length()) {
+                    resultat = "0";
+                }*/
+
+               resultat = element1.replaceAll(element2,"");
+
+                System.out.println(resultat.trim());
                 break;
             case "/":
                 int type2 = Integer.parseInt(element2);
                 if (type2 > 10 || type2 <= 0) {
                     throw new InputMismatchException("Неверное значение числа, вводить числа от 1 до 10");
                 }
-                System.out.println(element1.substring(0, type2));
+                System.out.println(element1.substring(0, type2 + 1));
                 break;
         }
         }
