@@ -51,15 +51,22 @@ public class Strok {
                 break;
 
             case "-":
-                resultat = element1.replaceAll(" ", "");
-                System.out.println(resultat);
+                String[]ar = str.split(" - ");
+                String num1 = ar[0].replaceAll("\"", "");
+                if (num1.length()> 10 ){
+                    throw new InputMismatchException("Введенно более 10 символов в строку 1");}
+                String num2 =ar[1].replaceAll("\"", "");
+                if (num2.length()> 10 ){
+                    throw new InputMismatchException("Введенно более 10 символов в строку 1");}
+               resultat = num1.replaceFirst(num2,"");
+                System.out.println(resultat.trim());
                 break;
             case "/":
                 int type2 = Integer.parseInt(element2);
                 if (type2 > 10 || type2 <= 0) {
                     throw new InputMismatchException("Неверное значение числа, вводить числа от 1 до 10");
                 }
-                System.out.println(element1.substring(0, type2));
+                System.out.println(element1.substring(0, type2 + 1));
                 break;
         }
         }
